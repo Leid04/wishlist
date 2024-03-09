@@ -15,32 +15,14 @@
   </form>
   <div class="row mt-3">
     <div class="col-sm-2">
-      <select [(ngModel)]="listFilter" (ngModelChange)="filterChanged($event)" class="form-select">
+      <select [(ngModel)]="listFilter" class="form-select">
         <option value="0">All</option>
         <option value="1">Unfulfilled</option>
         <option value="2">Fulfiled</option>
       </select>
     </div>
   </div>
-  @if (visibleItems.length !== 0) {
-    <ul class="wish-list">
-      @for (item of visibleItems; track item.wishId; let idx = $index) {
-        <li>
-          <div class="form-check">
-              <label class="form-ckeck-label">
-                <input 
-                  type="checkbox" 
-                  class="checkbox"
-                  [checked] = "item.isComplete"
-                  [attr.data-index] = idx
-                  (click)="toggleItem(item)"
-                >{{item.wishText}}
-              </label>
-          </div>
-        </li>
-      }
-    </ul>
-  }@else {
-    <p>No items in the cart.</p>
-  }
+  <div class="row mt-3">
+    <wish-list [wishes]="visibleItems" />
+  </div>
 </div>
