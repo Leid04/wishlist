@@ -1,13 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { WishItem } from '../../shared/models/WishItem';
 
-
 @Component({
   selector: 'wish-list',
   standalone: true,
   imports: [],
   templateUrl: './wish-list.component.html',
-  styleUrl: './wish-list.component.css'
+  styles: ` .wish-list{ list-style: none; padding: 0; } `
+  
 })
 export class WishListComponent {
   @Input() wishes : WishItem[] = [];
