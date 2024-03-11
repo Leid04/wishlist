@@ -1,12 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {NgClass} from '@angular/common';
+import events from './../../shared/services/EventService';
 
 @Component({
   selector: 'wish-list-item',
   standalone: true,
   imports: [NgClass],
   template: `
-    <li>
+    <li class="d-flex justify-content-between">
       <div class="form-check">
           <label class="form-ckeck-label" [ngClass]="cssClasses">
             <input 
@@ -16,6 +17,9 @@ import {NgClass} from '@angular/common';
               (click)="toggleFullfilled()"
             >{{wishText}}
           </label>
+      </div>
+      <div>
+        <button type="button" class="btn-close" (click)="removeWish()" ></button>
       </div>
     </li>
   `,
@@ -27,6 +31,11 @@ export class WishListItemComponent {
   @Output() fullfilledChange = new EventEmitter<boolean>();
 
   get cssClasses(){  return {'strikeout text-muted': this.fullfilled} }
+
+  removeWish(){
+    events.emit('removeWish', this.wishText);
+  }
+
 
   toggleFullfilled(){ 
     this.fullfilled = !this.fullfilled;
