@@ -11,7 +11,17 @@ import { WishFilterComponent } from './wish-filter/wish-filter.component';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, FormsModule, WishListComponent, AddWishFormComponent, WishFilterComponent],
-  templateUrl: './app.component.html',
+  template: `
+    <div class="container">
+      <add-wish-form (addWish) = "items.push($event)" />
+      <div class="row mt-3">
+        <wish-filter [(filter)]="filter" />
+      </div>
+      <div class="row mt-3">
+        <wish-list [wishes]="items.filter(filter)" />
+      </div>
+    </div>
+  `,
   styles: ` .wish-list{ list-style: none; }  `
 })
 export class AppComponent {
@@ -20,5 +30,5 @@ export class AppComponent {
     new WishItem(2, 'Get coffee', true),
     new WishItem(3, 'Find grass that cuts itself'),
   ];
-  filter: any = () => {};
+  filter: any;
 }
