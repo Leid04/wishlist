@@ -32,8 +32,10 @@ export class AppComponent {
   filter: any;
 
   constructor(){
+    //remove wish
     events.listen('removeWish', (wish: any) => {
-      //remove wish
+      let index = this.items.indexOf(wish);
+      this.items.splice(index, 1);
     });
   }
 

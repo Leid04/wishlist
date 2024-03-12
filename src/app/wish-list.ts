@@ -10,7 +10,7 @@ import { WishListItemComponent } from './wish-list-item';
     @if (wishes.length !== 0) {
       <ul class="wish-list">
         @for (wish of wishes; track wish.wishId) {
-          <wish-list-item [wishText]="wish.wishText" [(fullfilled)]="wish.isComplete" />
+          <wish-list-item [wish]="wish" />
         }
       </ul>
     }@else { <p>No items in the cart.</p> }
