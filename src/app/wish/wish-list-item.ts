@@ -1,12 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import {NgClass} from '@angular/common';
-import { EventService} from '../shared/services/EventService';
-import { WishItem } from '../shared/models/WishItem';
+import { Component, Input} from '@angular/core';
+import { EventService} from '../../shared/services/EventService';
+import { WishItem } from '../../shared/models/WishItem';
 
 @Component({
   selector: 'wish-list-item',
-  standalone: true,
-  imports: [NgClass],
   template: `
     <li class="d-flex justify-content-between">
       <div class="form-check">

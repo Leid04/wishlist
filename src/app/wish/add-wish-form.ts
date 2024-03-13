@@ -1,11 +1,8 @@
 import { Component, Output, EventEmitter} from '@angular/core';
-import { WishItem } from '../shared/models/WishItem';
-import { FormsModule} from '@angular/forms';
+import { WishItem } from '../../shared/models/WishItem';
 
 @Component({
   selector: 'add-wish-form',
-  standalone: true,
-  imports: [FormsModule],
   template: `
     <form class="row mt-3 gx-3 gy-2 align-items-center justify-content-center">
         <div class="col-sm-6">

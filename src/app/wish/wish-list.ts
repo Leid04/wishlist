@@ -1,11 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { WishItem } from '../shared/models/WishItem';
-import { WishListItemComponent } from './wish-list-item';
+import { WishItem } from '../../shared/models/WishItem';
 
 @Component({
   selector: 'wish-list',
-  standalone: true,
-  imports: [WishListItemComponent],
   template: `
     @if (wishes.length !== 0) {
       <ul class="wish-list">
