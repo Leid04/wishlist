@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { WishItem } from '../shared/models/WishItem';
 import { WishListComponent } from './wish-list';
 import { AddWishFormComponent } from './add-wish-form';
 import { WishFilterComponent } from './wish-filter';
-import events from './../shared/services/EventService';
+import { EventService } from './../shared/services/EventService';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, FormsModule, WishListComponent, AddWishFormComponent, WishFilterComponent],
+  providers: [EventService],
   template: `
     <div class="container">
       <add-wish-form (addWish) = "items.push($event)" />
@@ -30,10 +31,11 @@ export class AppComponent {
     new WishItem(3, 'Find grass that cuts itself'),
   ];
   filter: any;
+  events = inject(EventService);
 
-  constructor(){
-    //remove wish
-    events.listen('removeWish', (wish: any) => {
+  constructor(){//remove wish
+    this.events = inject(EventService);//4.3 using inject function
+    this.events.listen('removeWish', (wish: any) => {
       let index = this.items.indexOf(wish);
       this.items.splice(index, 1);
     });
