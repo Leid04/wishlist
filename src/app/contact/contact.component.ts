@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { createInvalidDomainVal } from './InvalidDomail';
+
+const invalidDomain = createInvalidDomainVal(['gmail.com', 'yahoo.com']);
 
 @Component({
   selector: 'app-contact',
@@ -33,6 +36,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
                     <small class="text-danger"
                       *ngIf="contactForm.get('senderEmail')?.hasError('email')"  
                     >Plese enter your email address</small>
+
+                    <small class="text-danger"
+                      *ngIf="contactForm.get('senderEmail')?.hasError('invalidDomain')"  
+                    >The email provider is not allowed.</small>
                   </div>
                 }
             </div>
@@ -67,7 +74,7 @@ export class ContactComponent {
 
   contactForm = new FormGroup({
     senderName: new FormControl('', Validators.required),
-    senderEmail: new FormControl('', [Validators.required, Validators.email]),
+    senderEmail: new FormControl('', [Validators.required, Validators.email, invalidDomain]),
     senderMessage: new FormControl('', [Validators.required, Validators.minLength(10)])
   })
 

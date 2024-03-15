@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ContactComponent } from './contact.component';
 
 @NgModule({
-  declarations: [ContactComponent], // Corrected declaration
+  declarations: [ContactComponent],
   imports: [CommonModule, ReactiveFormsModule],
   exports: [ContactComponent]
 })
